@@ -90,13 +90,13 @@ jobs:
         DATABASE_ENGINE: ${{ matrix.database }}
       run: |
         coverage run --append --source=admin_interface setup.py test
-        coverage xml -o ./coverage_py-${{ matrix.python-version }}_dj-${{ matrix.django-version }}_db-${{ matrix.database }}.xml
+        coverage xml -o ./coverage.xml
     
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
       with:
         fail_ci_if_error: false
-        files: ./coverage_py-${{ matrix.python-version }}_dj-${{ matrix.django-version }}_db-${{ matrix.database }}.xml
+        files: ./coverage.xml
         flags: unittests
         verbose: true
         
